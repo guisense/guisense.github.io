@@ -97,14 +97,14 @@
 
 
   <meta name="description" content="记录自己的学习过程，SpringIoc初始化流程以及Ioc容器内bean如何被实例化">
-<meta name="keywords" content="Java,Spring,源码阅读">
+<meta name="keywords" content="Spring,源码阅读,Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Ioc初始化流程（一）">
 <meta property="og:url" content="http://www.liyinghui.top/2019/08/20/Spring Ioc 初始化流程/index.html">
 <meta property="og:site_name" content="Daniel&#39;s site">
 <meta property="og:description" content="记录自己的学习过程，SpringIoc初始化流程以及Ioc容器内bean如何被实例化">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-20T15:46:47.050Z">
+<meta property="og:updated_time" content="2019-08-20T16:25:28.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Ioc初始化流程（一）">
 <meta name="twitter:description" content="记录自己的学习过程，SpringIoc初始化流程以及Ioc容器内bean如何被实例化">
@@ -337,12 +337,24 @@
                 
               
 
-              <time title="Created: 2019-08-20 23:25:10 / Modified: 23:46:47" itemprop="dateCreated datePublished" datetime="2019-08-20T23:25:10+08:00">2019-08-20</time>
+              <time title="Created: 2019-08-20 23:25:10" itemprop="dateCreated datePublished" datetime="2019-08-20T23:25:10+08:00">2019-08-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-21 00:25:28" itemprop="dateModified" datetime="2019-08-21T00:25:28+08:00">2019-08-21</time>
               
             
           </span>
@@ -399,7 +411,12 @@
         <h1 id="Spring-Ioc-初始化流程（一）"><a href="#Spring-Ioc-初始化流程（一）" class="headerlink" title="Spring Ioc 初始化流程（一）"></a>Spring Ioc 初始化流程（一）</h1><blockquote>
 <p>开始学习并阅读Spring源码了，注定是一个痛苦和收获的过程，</p>
 </blockquote>
-<h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/ad05cfe7868e" target="_blank" rel="noopener">Spring IOC实现原理1</a></p>
+<h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><p>说Ioc之前，先要弄清楚两个概念，<strong>依赖倒置和控制反转</strong>。</p>
+<p>对于依赖倒置，在<a href="https://www.jianshu.com/p/ad05cfe7868e" target="_blank" rel="noopener">参考文章一</a>中其实已经讲的很生动了，用汽车和轮子的关系将依赖倒置的思想讲的很清楚，<strong>高层建筑决定需要什么，底层去实现这样的需求，但是高层并不用管底层是怎么实现的。</strong></p>
+<p>IOC（Inversion of Control），控制反转，其实就是依赖倒置的一种实现，通过依赖注入的方式，将底层作为参数传递至高层，从而实现自上而下的控制（创建）</p>
+<p>而IOC容器，实际就是在需要的时候生产这些自下而上的bean，以及管理这些bean，bean可以理解为各种pojo类。</p>
+<p>Spring IOC主要分为两种：BeanFactory和ApplicationContext</p>
+<h2 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h2><h2 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/ad05cfe7868e" target="_blank" rel="noopener">Spring IOC实现原理1</a></p>
 <p><a href="https://www.cnblogs.com/virgosnail/p/10301367.html" target="_blank" rel="noopener">Spring IOC实现原理2</a></p>
 
       
@@ -424,11 +441,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
             <a href="/tags/Spring/" rel="tag"># Spring</a>
           
             <a href="/tags/源码阅读/" rel="tag"># 源码阅读</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -535,8 +552,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">categories</span>
                   
@@ -549,20 +564,6 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -612,7 +613,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Ioc-初始化流程（一）"><span class="nav-number">1.</span> <span class="nav-text">Spring Ioc 初始化流程（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.2.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Ioc-初始化流程（一）"><span class="nav-number">1.</span> <span class="nav-text">Spring Ioc 初始化流程（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeanFactory"><span class="nav-number">1.2.</span> <span class="nav-text">BeanFactory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ApplicationContext"><span class="nav-number">1.3.</span> <span class="nav-text">ApplicationContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.4.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>
