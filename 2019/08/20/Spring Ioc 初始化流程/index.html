@@ -96,13 +96,18 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Daniel&#39;s site">
-<meta property="og:url" content="http://www.liyinghui.top/archives/index.html">
+  <meta name="description" content="记录自己的学习过程，SpringIoc初始化流程以及Ioc容器内bean如何被实例化">
+<meta name="keywords" content="Java,Spring,源码阅读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Ioc初始化流程（一）">
+<meta property="og:url" content="http://www.liyinghui.top/2019/08/20/Spring Ioc 初始化流程/index.html">
 <meta property="og:site_name" content="Daniel&#39;s site">
+<meta property="og:description" content="记录自己的学习过程，SpringIoc初始化流程以及Ioc容器内bean如何被实例化">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-20T15:46:47.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Daniel&#39;s site">
+<meta name="twitter:title" content="Spring Ioc初始化流程（一）">
+<meta name="twitter:description" content="记录自己的学习过程，SpringIoc初始化流程以及Ioc容器内bean如何被实例化">
 
 
 
@@ -110,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://www.liyinghui.top/archives/">
+  <link rel="canonical" href="http://www.liyinghui.top/2019/08/20/Spring Ioc 初始化流程/">
 
 
 
@@ -120,7 +125,7 @@
   };
 </script>
 
-  <title>Archive | Daniel's site</title>
+  <title>Spring Ioc初始化流程（一） | Daniel's site</title>
   
 
 
@@ -168,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,7 +232,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -248,19 +253,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -286,113 +278,202 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 2 posts in total. Keep on posting.
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.liyinghui.top/2019/08/20/Spring Ioc 初始化流程/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Daniel">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Daniel's site">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/08/20/Spring Ioc 初始化流程/" itemprop="url">
-            
-              <span itemprop="name">Spring Ioc初始化流程（一）</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Spring Ioc初始化流程（一）
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-20T23:25:10+08:00" content="2019-08-20">
-          08-20
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-20 23:25:10 / Modified: 23:46:47" itemprop="dateCreated datePublished" datetime="2019-08-20T23:25:10+08:00">2019-08-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring源码阅读/" itemprop="url" rel="index"><span itemprop="name">Spring源码阅读</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">记录自己的学习过程，SpringIoc初始化流程以及Ioc容器内bean如何被实例化</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/16/继承、装饰模式、动态代理(JDK)区别/" itemprop="url">
-            
-              <span itemprop="name">继承、装饰模式、动态代理(JDK)区别</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-16T00:22:02+08:00" content="2019-08-16">
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h1 id="Spring-Ioc-初始化流程（一）"><a href="#Spring-Ioc-初始化流程（一）" class="headerlink" title="Spring Ioc 初始化流程（一）"></a>Spring Ioc 初始化流程（一）</h1><blockquote>
+<p>开始学习并阅读Spring源码了，注定是一个痛苦和收获的过程，</p>
+</blockquote>
+<h2 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/ad05cfe7868e" target="_blank" rel="noopener">Spring IOC实现原理1</a></p>
+<p><a href="https://www.cnblogs.com/virgosnail/p/10301367.html" target="_blank" rel="noopener">Spring IOC实现原理2</a></p>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/源码阅读/" rel="tag"># 源码阅读</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/16/继承、装饰模式、动态代理(JDK)区别/" rel="next" title="继承、装饰模式、动态代理(JDK)区别">
+                <i class="fa fa-chevron-left"></i> 继承、装饰模式、动态代理(JDK)区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -412,8 +493,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -511,6 +601,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Ioc-初始化流程（一）"><span class="nav-number">1.</span> <span class="nav-text">Spring Ioc 初始化流程（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义："><span class="nav-number">1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.2.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -639,6 +746,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
 
   
 
@@ -654,6 +765,8 @@
 
   
 
+
+  
 
 
   
